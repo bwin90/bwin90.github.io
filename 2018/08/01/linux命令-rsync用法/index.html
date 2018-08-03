@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="windows下的后台进程是通过【服务】实现的，路径：计算机 -&amp;gt; 管理 -&amp;gt; 服务和应用程序 -&amp;gt; 服务 可以查看服务列表，我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。">
+<meta name="description" content="rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。 ##语法rsync有6种不同的工作模式： rsync [OPTION]… SRC DESTrsync [OPTION]… SRC [USER@]host:DESTrsync [OPTION]… [USER@]HOST:SRC DEST rsync [OPTION]… [USER@]HOST">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows下python实现守护进程">
-<meta property="og:url" content="http://yoursite.com/2018/07/05/windows下python实现守护进程/index.html">
+<meta property="og:title" content="rsync命令">
+<meta property="og:url" content="http://yoursite.com/2018/08/01/linux命令-rsync用法/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="windows下的后台进程是通过【服务】实现的，路径：计算机 -&amp;gt; 管理 -&amp;gt; 服务和应用程序 -&amp;gt; 服务 可以查看服务列表，我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。">
+<meta property="og:description" content="rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。 ##语法rsync有6种不同的工作模式： rsync [OPTION]… SRC DESTrsync [OPTION]… SRC [USER@]host:DESTrsync [OPTION]… [USER@]HOST:SRC DEST rsync [OPTION]… [USER@]HOST">
 <meta property="og:locale" content="default">
 <meta property="og:updated_time" content="2018-08-02T01:53:28.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows下python实现守护进程">
-<meta name="twitter:description" content="windows下的后台进程是通过【服务】实现的，路径：计算机 -&amp;gt; 管理 -&amp;gt; 服务和应用程序 -&amp;gt; 服务 可以查看服务列表，我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。">
+<meta name="twitter:title" content="rsync命令">
+<meta name="twitter:description" content="rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。 ##语法rsync有6种不同的工作模式： rsync [OPTION]… SRC DESTrsync [OPTION]… SRC [USER@]host:DESTrsync [OPTION]… [USER@]HOST:SRC DEST rsync [OPTION]… [USER@]HOST">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/05/windows下python实现守护进程/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/01/linux命令-rsync用法/"/>
 
 
 
 
 
-  <title>windows下python实现守护进程 | Think</title>
+  <title>rsync命令 | Think</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/windows下python实现守护进程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/linux命令-rsync用法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nick">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">windows下python实现守护进程</h1>
+          <h1 class="post-title" itemprop="name headline">rsync命令</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T16:35:19+08:00">
-                2018-07-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T16:05:48+08:00">
+                2018-08-01
               </time>
             
 
@@ -284,8 +284,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -321,54 +321,13 @@
       
 
       
-        <p>windows下的后台进程是通过【服务】实现的，路径：计算机 -&gt; 管理 -&gt; 服务和应用程序 -&gt; 服务 可以查看服务列表，<br>我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。<br><a id="more"></a><br>准备<br>python<br>pywin32（python的win32库）</p>
-<p>服务类<br>其核心类为win32serviceutil.ServiceFramework，实现我们自己的服务只需要继承该类即可。</p>
-<p>成员变量：<br>_svc_name_ = “your service name”<br>_svc_display_name_ = “your service display name”<br>_svc_description_ = “your service description”</p>
-<p>方法：<br>SvcDoRun 启动该服务的回调<br>SvcStop 结束该服务的回调<br>一般来说，程序的主逻辑放到SvcDoRun 里，程序结束的逻辑放到SvcStop 里。ServiceFramework 自己有一套对服务的控制机制，大概是如下的样子：</p>
-<p>install     -&gt;      调用windows服务API来安装一个服务<br>remove     -&gt;     调用windows服务API来卸载一个服务<br>start     -&gt;     SvcDoRun<br>stop     -&gt;     SvcStop<br>restart     -&gt;     SvcStop  -&gt; SvcDoRun </p>
-<p>另外，在python程序的main下， 要使用pywin32的接口来指定需要通过命令行执行的类：</p>
-<p> win32serviceutil.HandleCommandLine(ServiceClass)</p>
-<p>例子</p>
-<p>import win32serviceutil<br>import win32service<br>import win32event<br>import os<br>import logging<br>import inspect<br>import sys<br>import servicemanager</p>
-<p>class PythonService(win32serviceutil.ServiceFramework):<br>    _svc_name_ = “PythonService”<br>    _svc_display_name_ = “Python Service Test”<br>    _svc_description_ = “This is a python service test code “</p>
-<pre><code>def __init__(self, args):
-    win32serviceutil.ServiceFramework.__init__(self, args)
-    self.hWaitStop = win32event.CreateEvent(None, 0, 0, None)
-    self.logger = self._getLogger()
-    self.run = True
-
-def _getLogger(self):
-    logger = logging.getLogger(&apos;[PythonService]&apos;)
-
-    this_file = inspect.getfile(inspect.currentframe())
-    dirpath = os.path.abspath(os.path.dirname(this_file))
-    handler = logging.FileHandler(os.path.join(dirpath, &quot;service.log&quot;))
-
-    formatter = logging.Formatter(&apos;%(asctime)s %(name)-12s %(levelname)-8s %(message)s&apos;)
-    handler.setFormatter(formatter)
-
-    logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
-
-    return logger
-
-def SvcDoRun(self):
-    import time
-    self.logger.info(&quot;service is run....&quot;)
-    while self.run:
-        self.logger.info(&quot;I am runing....&quot;)
-        time.sleep(2)
-    # win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
-
-def SvcStop(self):
-    self.logger.info(&quot;service is stop....&quot;)
-    self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
-    win32event.SetEvent(self.hWaitStop)
-    self.run = False
-</code></pre><p>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>        win32serviceutil.HandleCommandLine(PythonService)</p>
-<p>安装服务： python PythonService.py install<br>启动服务： python PythonService.py start<br>关闭服务： python PythonService.py stop<br>重启服务： python PythonService.py restart<br>卸载服务： python PythonService.py remove</p>
-<p>注意事项</p>
-<p>启动服务时，报错Error starting service: 服务没有及时响应启动或控制请求。<br>解决方案：把python可执行文件的路径添加到系统变量的Path中，而不仅仅在用户的系统变量中添加</p>
+        <p>rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。</p>
+<p>##语法<br>rsync有6种不同的工作模式：</p>
+<p>rsync [OPTION]… SRC DEST<br>rsync [OPTION]… SRC [USER@]host:DEST<br>rsync [OPTION]… [USER@]HOST:SRC DEST</p>
+<p>rsync [OPTION]… [USER@]HOST::SRC DEST<br>rsync [OPTION]… SRC [USER@]HOST::DEST<br>rsync [OPTION]… rsync://[USER@]HOST[:PORT]/SRC [DEST]</p>
+<p>1.同步本地文件<br>2.本地同步远程（shell）<br>3.远程同步本地（shell）<br>4.远程rsync服务器同步本地（rsync daemon）<br>5.本地同步远程rsync服务器（rsync daemon）<br>6.网络套接字同步（rsync daemon）<br><a id="more"></a></p>
+<p>##选项<br>-v, –verbose 详细模式输出。<br>-q, –quiet 精简输出模式。<br>-c, –checksum 打开校验开关，强制对文件传输进行校验。<br>-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD。<br>-r, –recursive 对子目录以递归模式处理。<br>-R, –relative 使用相对路径信息。<br>-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。<br>–backup-dir 将备份文件(如~filename)存放在在目录下。<br>-suffix=SUFFIX 定义备份文件前缀。<br>-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。<br>-l, –links 保留软链结。<br>-L, –copy-links 想对待常规文件一样处理软链结。<br>–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结。<br>–safe-links 忽略指向SRC路径目录树以外的链结。<br>-H, –hard-links 保留硬链结。<br>-p, –perms 保持文件权限。<br>-o, –owner 保持文件属主信息。<br>-g, –group 保持文件属组信息。<br>-D, –devices 保持设备文件信息。<br>-t, –times 保持文件时间信息。<br>-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间。<br>-n, –dry-run现实哪些文件将被传输。<br>-w, –whole-file 拷贝文件，不进行增量检测。<br>-x, –one-file-system 不要跨越文件系统边界。<br>-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节。<br>-e, –rsh=command 指定使用rsh、ssh方式进行数据同步。<br>–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息。<br>-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件。<br>–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。<br>–delete 删除那些DST中SRC没有的文件。<br>–delete-excluded 同样删除接收端那些被该选项指定排除的文件。<br>–delete-after 传输结束以后再删除。<br>–ignore-errors 及时出现IO错误也进行删除。<br>–max-delete=NUM 最多删除NUM个文件。<br>–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输。<br>–force 强制删除目录，即使不为空。<br>–numeric-ids 不将数字的用户和组id匹配为用户名和组名。<br>–timeout=time ip超时时间，单位为秒。<br>-I, –ignore-times 不跳过那些有同样的时间和长度的文件。<br>–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间。<br>–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0。<br>-T –temp-dir=DIR 在DIR中创建临时文件。<br>–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份。<br>-P 等同于 –partial。<br>–progress 显示备份过程。<br>-z, –compress 对备份的文件在传输时进行压缩处理。<br>–exclude=PATTERN 指定排除不需要传输的文件模式。<br>–include=PATTERN 指定不排除而需要传输的文件模式。<br>–exclude-from=FILE 排除FILE中指定模式的文件。<br>–include-from=FILE 不排除FILE指定模式匹配的文件。<br>–version 打印版本信息。<br>–address 绑定到特定的地址。<br>–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件。<br>–port=PORT 指定其他的rsync服务端口。<br>–blocking-io 对远程shell使用阻塞IO。<br>-stats 给出某些文件的传输状态。<br>–progress 在传输时现实传输过程。<br>–log-format=formAT 指定日志文件格式。<br>–password-file=FILE 从FILE中得到密码。<br>–bwlimit=KBPS 限制I/O带宽，KBytes per second。<br>-h, –help 显示帮助信息。</p>
+<p>##注意事项<br>1.如果仅有一个SRC或DEST参数，则将以类似于”ls -l”的方式列出源文件列表(只有一个路径参数，总会认为是源文件)，而不是复制文件<br>2.源路径如果是一个目录的话，带上尾随斜线和不带尾随斜线是不一样的，不带尾随斜线表示的是整个目录包括目录本身，带上尾随斜线表示的是目录中的文件，不包括目录本身</p>
 
       
     </div>
@@ -393,8 +352,8 @@ def SvcStop(self):
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/26/多进程-VS-多线程/" rel="next" title="多进程 VS 多线程">
-                <i class="fa fa-chevron-left"></i> 多进程 VS 多线程
+              <a href="/2018/07/27/Github-Hexo-搭建博客/" rel="next" title="Github + Hexo 搭建博客">
+                <i class="fa fa-chevron-left"></i> Github + Hexo 搭建博客
               </a>
             
           </div>
@@ -403,8 +362,8 @@ def SvcStop(self):
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/27/linux命令-sed用法/" rel="prev" title="linux sed 用法">
-                linux sed 用法 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/02/FFmpeg库常用操作/" rel="prev" title="FFmpeg库常用操作">
+                FFmpeg库常用操作 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
