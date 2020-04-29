@@ -79,17 +79,20 @@
 
 
 
-<meta name="description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。参考链接：https://coolshell.cn/articles/9104.htmlsed手册：http://www.gnu.org/software/sed/manual/sed.html">
+<meta name="description" content="HTTPS = HTTP + 加密 + 认证加密 对称加密   加密和解密数据使用同一个密钥。这种加密方式的特点是速度很快，常见对称加密的算法有 AES。  非对称加密   加密和解密使用不同的密钥，这两个密钥形成有且仅有唯一的配对，叫公钥和私钥。数据用公钥加密后必须用私钥解密，数据用私钥加密后必须用公钥解密。一般来说私钥自己保留好，把公钥公开给别人让别人拿自己的公钥加密数据后发给自己，这样只有自">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux sed 用法">
-<meta property="og:url" content="http://yoursite.com/2018/07/27/linux命令-sed用法/index.html">
+<meta property="og:title" content="Https认证">
+<meta property="og:url" content="http://yoursite.com/2019/04/29/https/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。参考链接：https://coolshell.cn/articles/9104.htmlsed手册：http://www.gnu.org/software/sed/manual/sed.html">
+<meta property="og:description" content="HTTPS = HTTP + 加密 + 认证加密 对称加密   加密和解密数据使用同一个密钥。这种加密方式的特点是速度很快，常见对称加密的算法有 AES。  非对称加密   加密和解密使用不同的密钥，这两个密钥形成有且仅有唯一的配对，叫公钥和私钥。数据用公钥加密后必须用私钥解密，数据用私钥加密后必须用公钥解密。一般来说私钥自己保留好，把公钥公开给别人让别人拿自己的公钥加密数据后发给自己，这样只有自">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T01:53:28.309Z">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/28/169c44ac0af42de7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2019/3/28/169c44ac0ad58847?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
+<meta property="og:updated_time" content="2020-04-29T15:31:24.926Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="linux sed 用法">
-<meta name="twitter:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。参考链接：https://coolshell.cn/articles/9104.htmlsed手册：http://www.gnu.org/software/sed/manual/sed.html">
+<meta name="twitter:title" content="Https认证">
+<meta name="twitter:description" content="HTTPS = HTTP + 加密 + 认证加密 对称加密   加密和解密数据使用同一个密钥。这种加密方式的特点是速度很快，常见对称加密的算法有 AES。  非对称加密   加密和解密使用不同的密钥，这两个密钥形成有且仅有唯一的配对，叫公钥和私钥。数据用公钥加密后必须用私钥解密，数据用私钥加密后必须用公钥解密。一般来说私钥自己保留好，把公钥公开给别人让别人拿自己的公钥加密数据后发给自己，这样只有自">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2019/3/28/169c44ac0af42de7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1">
 
 
 
@@ -119,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/27/linux命令-sed用法/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/04/29/https/"/>
 
 
 
 
 
-  <title>linux sed 用法 | Think</title>
+  <title>Https认证 | Think</title>
   
 
 
@@ -232,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/27/linux命令-sed用法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/29/https/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nick">
@@ -249,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">linux sed 用法</h1>
+          <h1 class="post-title" itemprop="name headline">Https认证</h1>
         
 
         <div class="post-meta">
@@ -261,8 +264,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-27T16:12:00+08:00">
-                2018-07-27
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-29T23:05:07+08:00">
+                2019-04-29
               </time>
             
 
@@ -271,28 +274,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -321,7 +302,19 @@
       
 
       
-        <p>sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。<br>参考链接：<a href="https://coolshell.cn/articles/9104.html" target="_blank" rel="noopener">https://coolshell.cn/articles/9104.html</a><br>sed手册：<a href="http://www.gnu.org/software/sed/manual/sed.html" target="_blank" rel="noopener">http://www.gnu.org/software/sed/manual/sed.html</a></p>
+        <h2 id="HTTPS-HTTP-加密-认证"><a href="#HTTPS-HTTP-加密-认证" class="headerlink" title="HTTPS = HTTP + 加密 + 认证"></a>HTTPS = HTTP + 加密 + 认证</h2><h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><ul>
+<li><p>对称加密</p>
+<p>  加密和解密数据使用同一个密钥。这种加密方式的特点是速度很快，常见对称加密的算法有 AES。</p>
+</li>
+<li><p>非对称加密</p>
+<p>  加密和解密使用不同的密钥，这两个密钥形成有且仅有唯一的配对，叫公钥和私钥。数据用公钥加密后必须用私钥解密，数据用私钥加密后必须用公钥解密。一般来说私钥自己保留好，把公钥公开给别人让别人拿自己的公钥加密数据后发给自己，这样只有自己才能解密。 这种加密方式的特点是速度慢，CPU 开销大，常见非对称加密算法有 RSA。</p>
+</li>
+</ul>
+<a id="more"></a>
+<h3 id="CA"><a href="#CA" class="headerlink" title="CA"></a>CA</h3><p>CA证书是由CA（Certification Authority）机构发布的数字证书。其内容包含：电子签证机关的信息、用户信息、服务端的公钥、签名和有效期。这里的签名是指：用hash散列函数计算公开的明文信息的信息摘要，然后采用CA的私钥对信息摘要进行加密，加密完的密文就是签名。<br>客户端中因为在操作系统中就预置了CA的公钥，所以支持解密签名（因为签名使用CA的私钥加密的）</p>
+<h3 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h3><p><img src="https://user-gold-cdn.xitu.io/2019/3/28/169c44ac0af42de7?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+<p><img src="https://user-gold-cdn.xitu.io/2019/3/28/169c44ac0ad58847?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt=""></p>
+<p>参考链接：<a href="https://juejin.im/post/5c9cbf1df265da60f6731f0a" target="_blank" rel="noopener">https://juejin.im/post/5c9cbf1df265da60f6731f0a</a></p>
 
       
     </div>
@@ -346,8 +339,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/05/windows下python实现守护进程/" rel="next" title="windows下python实现守护进程">
-                <i class="fa fa-chevron-left"></i> windows下python实现守护进程
+              <a href="/2019/04/12/Nginx日志记录响应内容/" rel="next" title="Nginx日志记录响应内容">
+                <i class="fa fa-chevron-left"></i> Nginx日志记录响应内容
               </a>
             
           </div>
@@ -356,8 +349,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/07/27/Github-Hexo-搭建博客/" rel="prev" title="Github + Hexo 搭建博客">
-                Github + Hexo 搭建博客 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/04/19/pure-ftpd日志/" rel="prev" title="pure-ftpd日志">
+                pure-ftpd日志 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -410,8 +403,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -462,6 +464,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS-HTTP-加密-认证"><span class="nav-number">1.</span> <span class="nav-text">HTTPS = HTTP + 加密 + 认证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密"><span class="nav-number">1.1.</span> <span class="nav-text">加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CA"><span class="nav-number">1.2.</span> <span class="nav-text">CA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#认证"><span class="nav-number">1.3.</span> <span class="nav-text">认证</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
