@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="windows下的后台进程是通过【服务】实现的，路径：计算机 -&amp;gt; 管理 -&amp;gt; 服务和应用程序 -&amp;gt; 服务 可以查看服务列表，我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。">
+<meta name="description" content="Kubernetes是一个开源的容器集群管理系统，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。 中文社区">
 <meta property="og:type" content="article">
-<meta property="og:title" content="windows下python实现守护进程">
-<meta property="og:url" content="http://yoursite.com/2018/07/05/windows下python实现守护进程/index.html">
+<meta property="og:title" content="Kubernetes">
+<meta property="og:url" content="http://yoursite.com/2020/05/05/Kubernetes基础/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="windows下的后台进程是通过【服务】实现的，路径：计算机 -&amp;gt; 管理 -&amp;gt; 服务和应用程序 -&amp;gt; 服务 可以查看服务列表，我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。">
+<meta property="og:description" content="Kubernetes是一个开源的容器集群管理系统，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。 中文社区">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T01:53:28.309Z">
+<meta property="og:updated_time" content="2020-05-05T15:24:28.278Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="windows下python实现守护进程">
-<meta name="twitter:description" content="windows下的后台进程是通过【服务】实现的，路径：计算机 -&amp;gt; 管理 -&amp;gt; 服务和应用程序 -&amp;gt; 服务 可以查看服务列表，我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。">
+<meta name="twitter:title" content="Kubernetes">
+<meta name="twitter:description" content="Kubernetes是一个开源的容器集群管理系统，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。 中文社区">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/05/windows下python实现守护进程/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/05/Kubernetes基础/"/>
 
 
 
 
 
-  <title>windows下python实现守护进程 | Think</title>
+  <title>Kubernetes | Think</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/05/windows下python实现守护进程/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/05/Kubernetes基础/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nick">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">windows下python实现守护进程</h1>
+          <h1 class="post-title" itemprop="name headline">Kubernetes</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-07-05T16:35:19+08:00">
-                2018-07-05
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-05T22:22:26+08:00">
+                2020-05-05
               </time>
             
 
@@ -284,8 +284,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
                   </a>
                 </span>
 
@@ -321,54 +321,8 @@
       
 
       
-        <p>windows下的后台进程是通过【服务】实现的，路径：计算机 -&gt; 管理 -&gt; 服务和应用程序 -&gt; 服务 可以查看服务列表，<br>我们可以在服务列表对其进行控制（启动、停止、重启动）。接下来，我们就来看看如何利用python实现一个服务。<br><a id="more"></a><br>准备<br>python<br>pywin32（python的win32库）</p>
-<p>服务类<br>其核心类为win32serviceutil.ServiceFramework，实现我们自己的服务只需要继承该类即可。</p>
-<p>成员变量：<br>_svc_name_ = “your service name”<br>_svc_display_name_ = “your service display name”<br>_svc_description_ = “your service description”</p>
-<p>方法：<br>SvcDoRun 启动该服务的回调<br>SvcStop 结束该服务的回调<br>一般来说，程序的主逻辑放到SvcDoRun 里，程序结束的逻辑放到SvcStop 里。ServiceFramework 自己有一套对服务的控制机制，大概是如下的样子：</p>
-<p>install     -&gt;      调用windows服务API来安装一个服务<br>remove     -&gt;     调用windows服务API来卸载一个服务<br>start     -&gt;     SvcDoRun<br>stop     -&gt;     SvcStop<br>restart     -&gt;     SvcStop  -&gt; SvcDoRun </p>
-<p>另外，在python程序的main下， 要使用pywin32的接口来指定需要通过命令行执行的类：</p>
-<p> win32serviceutil.HandleCommandLine(ServiceClass)</p>
-<p>例子</p>
-<p>import win32serviceutil<br>import win32service<br>import win32event<br>import os<br>import logging<br>import inspect<br>import sys<br>import servicemanager</p>
-<p>class PythonService(win32serviceutil.ServiceFramework):<br>    _svc_name_ = “PythonService”<br>    _svc_display_name_ = “Python Service Test”<br>    _svc_description_ = “This is a python service test code “</p>
-<pre><code>def __init__(self, args):
-    win32serviceutil.ServiceFramework.__init__(self, args)
-    self.hWaitStop = win32event.CreateEvent(None, 0, 0, None)
-    self.logger = self._getLogger()
-    self.run = True
-
-def _getLogger(self):
-    logger = logging.getLogger(&apos;[PythonService]&apos;)
-
-    this_file = inspect.getfile(inspect.currentframe())
-    dirpath = os.path.abspath(os.path.dirname(this_file))
-    handler = logging.FileHandler(os.path.join(dirpath, &quot;service.log&quot;))
-
-    formatter = logging.Formatter(&apos;%(asctime)s %(name)-12s %(levelname)-8s %(message)s&apos;)
-    handler.setFormatter(formatter)
-
-    logger.addHandler(handler)
-    logger.setLevel(logging.INFO)
-
-    return logger
-
-def SvcDoRun(self):
-    import time
-    self.logger.info(&quot;service is run....&quot;)
-    while self.run:
-        self.logger.info(&quot;I am runing....&quot;)
-        time.sleep(2)
-    # win32event.WaitForSingleObject(self.hWaitStop, win32event.INFINITE)
-
-def SvcStop(self):
-    self.logger.info(&quot;service is stop....&quot;)
-    self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
-    win32event.SetEvent(self.hWaitStop)
-    self.run = False
-</code></pre><p>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>        win32serviceutil.HandleCommandLine(PythonService)</p>
-<p>安装服务： python PythonService.py install<br>启动服务： python PythonService.py start<br>关闭服务： python PythonService.py stop<br>重启服务： python PythonService.py restart<br>卸载服务： python PythonService.py remove</p>
-<p>注意事项</p>
-<p>启动服务时，报错Error starting service: 服务没有及时响应启动或控制请求。<br>解决方案：把python可执行文件的路径添加到系统变量的Path中，而不仅仅在用户的系统变量中添加</p>
+        <p>Kubernetes是一个开源的容器集群管理系统，可以实现容器集群的自动化部署、自动扩缩容、维护等功能。</p>
+<p><a href="http://docs.kubernetes.org.cn/" target="_blank" rel="noopener">中文社区</a></p>
 
       
     </div>
@@ -393,8 +347,8 @@ def SvcStop(self):
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/26/多进程-VS-多线程/" rel="next" title="多进程 VS 多线程">
-                <i class="fa fa-chevron-left"></i> 多进程 VS 多线程
+              <a href="/2020/04/22/google-continue-to-visit/" rel="next" title="Chrome浏览器不显示<继续访问>按钮">
+                <i class="fa fa-chevron-left"></i> Chrome浏览器不显示<继续访问>按钮
               </a>
             
           </div>
@@ -402,10 +356,6 @@ def SvcStop(self):
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/27/linux命令-sed用法/" rel="prev" title="linux sed 用法">
-                linux sed 用法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
