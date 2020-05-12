@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。 ##语法rsync有6种不同的工作模式： rsync [OPTION]… SRC DESTrsync [OPTION]… SRC [USER@]host:DESTrsync [OPTION]… [USER@]HOST:SRC DEST rsync [OPTION]… [USER@]HOST">
+<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768# redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。daemonize no# 指定redi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="rsync命令">
-<meta property="og:url" content="http://yoursite.com/2018/08/01/linux命令-rsync用法/index.html">
+<meta property="og:title" content="Redis 配置文件解析">
+<meta property="og:url" content="http://yoursite.com/2018/08/22/redis/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。 ##语法rsync有6种不同的工作模式： rsync [OPTION]… SRC DESTrsync [OPTION]… SRC [USER@]host:DESTrsync [OPTION]… [USER@]HOST:SRC DEST rsync [OPTION]… [USER@]HOST">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768# redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。daemonize no# 指定redi">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T01:53:28.309Z">
+<meta property="og:updated_time" content="2020-05-12T14:39:08.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="rsync命令">
-<meta name="twitter:description" content="rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。 ##语法rsync有6种不同的工作模式： rsync [OPTION]… SRC DESTrsync [OPTION]… SRC [USER@]host:DESTrsync [OPTION]… [USER@]HOST:SRC DEST rsync [OPTION]… [USER@]HOST">
+<meta name="twitter:title" content="Redis 配置文件解析">
+<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768# redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。daemonize no# 指定redi">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/01/linux命令-rsync用法/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/22/redis/"/>
 
 
 
 
 
-  <title>rsync命令 | Think</title>
+  <title>Redis 配置文件解析 | Think</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/01/linux命令-rsync用法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nick">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">rsync命令</h1>
+          <h1 class="post-title" itemprop="name headline">Redis 配置文件解析</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-01T16:05:48+08:00">
-                2018-08-01
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T22:16:21+08:00">
+                2018-08-22
               </time>
             
 
@@ -284,8 +284,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/数据库/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
 
@@ -321,13 +321,7 @@
       
 
       
-        <p>rsync命令是一个远程数据同步工具(基于rsync算法)，这个算法只同步不同部分而不是替换，因此速度很快。</p>
-<p>##语法<br>rsync有6种不同的工作模式：</p>
-<p>rsync [OPTION]… SRC DEST<br>rsync [OPTION]… SRC [USER@]host:DEST<br>rsync [OPTION]… [USER@]HOST:SRC DEST</p>
-<p>rsync [OPTION]… [USER@]HOST::SRC DEST<br>rsync [OPTION]… SRC [USER@]HOST::DEST<br>rsync [OPTION]… rsync://[USER@]HOST[:PORT]/SRC [DEST]</p>
-<p>1.同步本地文件<br>2.本地同步远程（shell）<br>3.远程同步本地（shell）<br>4.远程rsync服务器同步本地（rsync daemon）<br>5.本地同步远程rsync服务器（rsync daemon）<br>6.网络套接字同步（rsync daemon）<br><a id="more"></a></p>
-<p>##选项<br>-v, –verbose 详细模式输出。<br>-q, –quiet 精简输出模式。<br>-c, –checksum 打开校验开关，强制对文件传输进行校验。<br>-a, –archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于-rlptgoD。<br>-r, –recursive 对子目录以递归模式处理。<br>-R, –relative 使用相对路径信息。<br>-b, –backup 创建备份，也就是对于目的已经存在有同样的文件名时，将老的文件重新命名为~filename。可以使用–suffix选项来指定不同的备份文件前缀。<br>–backup-dir 将备份文件(如~filename)存放在在目录下。<br>-suffix=SUFFIX 定义备份文件前缀。<br>-u, –update 仅仅进行更新，也就是跳过所有已经存在于DST，并且文件时间晚于要备份的文件，不覆盖更新的文件。<br>-l, –links 保留软链结。<br>-L, –copy-links 想对待常规文件一样处理软链结。<br>–copy-unsafe-links 仅仅拷贝指向SRC路径目录树以外的链结。<br>–safe-links 忽略指向SRC路径目录树以外的链结。<br>-H, –hard-links 保留硬链结。<br>-p, –perms 保持文件权限。<br>-o, –owner 保持文件属主信息。<br>-g, –group 保持文件属组信息。<br>-D, –devices 保持设备文件信息。<br>-t, –times 保持文件时间信息。<br>-S, –sparse 对稀疏文件进行特殊处理以节省DST的空间。<br>-n, –dry-run现实哪些文件将被传输。<br>-w, –whole-file 拷贝文件，不进行增量检测。<br>-x, –one-file-system 不要跨越文件系统边界。<br>-B, –block-size=SIZE 检验算法使用的块尺寸，默认是700字节。<br>-e, –rsh=command 指定使用rsh、ssh方式进行数据同步。<br>–rsync-path=PATH 指定远程服务器上的rsync命令所在路径信息。<br>-C, –cvs-exclude 使用和CVS一样的方法自动忽略文件，用来排除那些不希望传输的文件。<br>–existing 仅仅更新那些已经存在于DST的文件，而不备份那些新创建的文件。<br>–delete 删除那些DST中SRC没有的文件。<br>–delete-excluded 同样删除接收端那些被该选项指定排除的文件。<br>–delete-after 传输结束以后再删除。<br>–ignore-errors 及时出现IO错误也进行删除。<br>–max-delete=NUM 最多删除NUM个文件。<br>–partial 保留那些因故没有完全传输的文件，以是加快随后的再次传输。<br>–force 强制删除目录，即使不为空。<br>–numeric-ids 不将数字的用户和组id匹配为用户名和组名。<br>–timeout=time ip超时时间，单位为秒。<br>-I, –ignore-times 不跳过那些有同样的时间和长度的文件。<br>–size-only 当决定是否要备份文件时，仅仅察看文件大小而不考虑文件时间。<br>–modify-window=NUM 决定文件是否时间相同时使用的时间戳窗口，默认为0。<br>-T –temp-dir=DIR 在DIR中创建临时文件。<br>–compare-dest=DIR 同样比较DIR中的文件来决定是否需要备份。<br>-P 等同于 –partial。<br>–progress 显示备份过程。<br>-z, –compress 对备份的文件在传输时进行压缩处理。<br>–exclude=PATTERN 指定排除不需要传输的文件模式。<br>–include=PATTERN 指定不排除而需要传输的文件模式。<br>–exclude-from=FILE 排除FILE中指定模式的文件。<br>–include-from=FILE 不排除FILE指定模式匹配的文件。<br>–version 打印版本信息。<br>–address 绑定到特定的地址。<br>–config=FILE 指定其他的配置文件，不使用默认的rsyncd.conf文件。<br>–port=PORT 指定其他的rsync服务端口。<br>–blocking-io 对远程shell使用阻塞IO。<br>-stats 给出某些文件的传输状态。<br>–progress 在传输时现实传输过程。<br>–log-format=formAT 指定日志文件格式。<br>–password-file=FILE 从FILE中得到密码。<br>–bwlimit=KBPS 限制I/O带宽，KBytes per second。<br>-h, –help 显示帮助信息。</p>
-<p>##注意事项<br>1.如果仅有一个SRC或DEST参数，则将以类似于”ls -l”的方式列出源文件列表(只有一个路径参数，总会认为是源文件)，而不是复制文件<br>2.源路径如果是一个目录的话，带上尾随斜线和不带尾随斜线是不一样的，不带尾随斜线表示的是整个目录包括目录本身，带上尾随斜线表示的是目录中的文件，不包括目录本身</p>
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"># redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。</span><br><span class="line">daemonize no</span><br><span class="line"></span><br><span class="line"># 指定redis进程的PID文件存放位置</span><br><span class="line">pidfile /var/run/redis.pid</span><br><span class="line"></span><br><span class="line"># redis进程的端口号</span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"># 绑定的主机地址</span><br><span class="line">bind 127.0.0.1</span><br><span class="line"></span><br><span class="line"># 客户端闲置多长时间后关闭连接，默认此参数为0即关闭此功能</span><br><span class="line">timeout 300</span><br><span class="line"></span><br><span class="line"># redis日志级别，可用的级别有debug.verbose.notice.warning</span><br><span class="line">loglevel verbose</span><br><span class="line"></span><br><span class="line"># log文件输出位置，如果进程以守护进程的方式运行，此处又将输出文件设置为stdout的话，就会将日志信息输出到/dev/null里面去了</span><br><span class="line">logfile stdout</span><br><span class="line"></span><br><span class="line"># 设置数据库的数量，默认为0可以使用select &lt;dbid&gt;命令在连接上指定数据库id</span><br><span class="line">databases 16</span><br><span class="line"></span><br><span class="line"># 指定在多少时间内刷新次数达到多少的时候会将数据同步到数据文件</span><br><span class="line">save &lt;seconds&gt; &lt;changes&gt;</span><br><span class="line"></span><br><span class="line"># 指定存储至本地数据库时是否压缩文件，默认为yes即启用存储</span><br><span class="line">rdbcompression yes</span><br><span class="line"></span><br><span class="line"># 指定本地数据库文件名</span><br><span class="line">dbfilename dump.db</span><br><span class="line"></span><br><span class="line"># 指定本地数据问就按存放位置</span><br><span class="line">dir ./</span><br><span class="line"></span><br><span class="line"># 指定当本机为slave服务时，设置master服务的IP地址及端口，在redis启动的时候他会自动跟master进行数据同步</span><br><span class="line">slaveof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"></span><br><span class="line"># 当master设置了密码保护时，slave服务连接master的密码</span><br><span class="line">masterauth &lt;master-password&gt;</span><br><span class="line"></span><br><span class="line"># 设置redis连接密码，如果配置了连接密码，客户端在连接redis是需要通过AUTH&lt;password&gt;命令提供密码，默认关闭</span><br><span class="line">requirepass footbared</span><br><span class="line"></span><br><span class="line"># 设置同一时间最大客户连接数，默认无限制。</span><br><span class="line"># redis可以同时连接的客户端数为redis程序可以打开的最大文件描述符，如果设置 maxclients 0，表示不作限制。</span><br><span class="line"># 当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回 max number of clients reached 错误信息</span><br><span class="line">maxclients 128</span><br><span class="line"></span><br><span class="line"># 指定redis最大内存限制，redis在启动时会把数据加载到内存中，达到最大内存后，redis会先尝试清除已到期或即将到期的Key。</span><br><span class="line"># 当此方法处理后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。</span><br><span class="line"># 如果不设置maxmemory或者设置为0（默认为0），64位系统不限制内存，32位系统最多使用3GB内存。</span><br><span class="line">maxmemory &lt;bytes&gt;</span><br><span class="line"></span><br><span class="line"># 指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘</span><br><span class="line"># 如果不开启，可能会在断电时导致一段时间内的数据丢失。</span><br><span class="line"># 因为redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no。</span><br><span class="line">appendonly no</span><br><span class="line"></span><br><span class="line"># 指定日志文件名，默认为appendonly.aof</span><br><span class="line">appendfilename appendonly.aof</span><br><span class="line"></span><br><span class="line"># 指定更新日志的条件，有三个可选参数</span><br><span class="line"># no：表示等操作系统进行数据缓存同步到磁盘(快)</span><br><span class="line"># always：表示每次更新操作后手动调用fsync()将数据写到磁盘(慢，安全)</span><br><span class="line"># everysec：表示每秒同步一次(折衷，默认值)</span><br><span class="line">appendfsync everysec</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -352,8 +346,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/27/Github-Hexo-搭建博客/" rel="next" title="Github + Hexo 搭建博客">
-                <i class="fa fa-chevron-left"></i> Github + Hexo 搭建博客
+              <a href="/2018/08/02/opencv系列-介绍/" rel="next" title="opencv系列--介绍">
+                <i class="fa fa-chevron-left"></i> opencv系列--介绍
               </a>
             
           </div>
@@ -362,8 +356,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/02/FFmpeg库常用操作/" rel="prev" title="FFmpeg库常用操作">
-                FFmpeg库常用操作 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/08/23/Redis主从复制集群/" rel="prev" title="Redis 主从复制集群实践">
+                Redis 主从复制集群实践 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
