@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768# redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。daemonize no# 指定redi">
+<meta name="description" content="tee 用于读取标准输入以及写到标准输出的同时写到文件中 常用操作 输出到文件1234echo 123 | tee out.log# 检查文件内容是否和输出一致cat out.log">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Redis 配置文件解析">
-<meta property="og:url" content="http://yoursite.com/2018/08/22/redis/index.html">
+<meta property="og:title" content="Linux命令 - tee">
+<meta property="og:url" content="http://yoursite.com/2020/05/17/tee/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768# redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。daemonize no# 指定redi">
+<meta property="og:description" content="tee 用于读取标准输入以及写到标准输出的同时写到文件中 常用操作 输出到文件1234echo 123 | tee out.log# 检查文件内容是否和输出一致cat out.log">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-05-12T14:39:08.151Z">
+<meta property="og:updated_time" content="2020-05-17T16:04:16.861Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Redis 配置文件解析">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768# redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。daemonize no# 指定redi">
+<meta name="twitter:title" content="Linux命令 - tee">
+<meta name="twitter:description" content="tee 用于读取标准输入以及写到标准输出的同时写到文件中 常用操作 输出到文件1234echo 123 | tee out.log# 检查文件内容是否和输出一致cat out.log">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/22/redis/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/05/17/tee/"/>
 
 
 
 
 
-  <title>Redis 配置文件解析 | Think</title>
+  <title>Linux命令 - tee | Think</title>
   
 
 
@@ -232,7 +232,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/22/redis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/17/tee/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nick">
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Redis 配置文件解析</h1>
+          <h1 class="post-title" itemprop="name headline">Linux命令 - tee</h1>
         
 
         <div class="post-meta">
@@ -261,8 +261,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-22T22:16:21+08:00">
-                2018-08-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-05-17T23:37:45+08:00">
+                2020-05-17
               </time>
             
 
@@ -284,8 +284,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/数据库/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
                   </a>
                 </span>
 
@@ -321,7 +321,23 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"># redis进程是否以守护进程的方式运行，yes为是，no为否(不以守护进程的方式运行会占用一个终端)。</span><br><span class="line">daemonize no</span><br><span class="line"></span><br><span class="line"># 指定redis进程的PID文件存放位置</span><br><span class="line">pidfile /var/run/redis.pid</span><br><span class="line"></span><br><span class="line"># redis进程的端口号</span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"># 绑定的主机地址</span><br><span class="line">bind 127.0.0.1</span><br><span class="line"></span><br><span class="line"># 客户端闲置多长时间后关闭连接，默认此参数为0即关闭此功能</span><br><span class="line">timeout 300</span><br><span class="line"></span><br><span class="line"># redis日志级别，可用的级别有debug.verbose.notice.warning</span><br><span class="line">loglevel verbose</span><br><span class="line"></span><br><span class="line"># log文件输出位置，如果进程以守护进程的方式运行，此处又将输出文件设置为stdout的话，就会将日志信息输出到/dev/null里面去了</span><br><span class="line">logfile stdout</span><br><span class="line"></span><br><span class="line"># 设置数据库的数量，默认为0可以使用select &lt;dbid&gt;命令在连接上指定数据库id</span><br><span class="line">databases 16</span><br><span class="line"></span><br><span class="line"># 指定在多少时间内刷新次数达到多少的时候会将数据同步到数据文件</span><br><span class="line">save &lt;seconds&gt; &lt;changes&gt;</span><br><span class="line"></span><br><span class="line"># 指定存储至本地数据库时是否压缩文件，默认为yes即启用存储</span><br><span class="line">rdbcompression yes</span><br><span class="line"></span><br><span class="line"># 指定本地数据库文件名</span><br><span class="line">dbfilename dump.db</span><br><span class="line"></span><br><span class="line"># 指定本地数据问就按存放位置</span><br><span class="line">dir ./</span><br><span class="line"></span><br><span class="line"># 指定当本机为slave服务时，设置master服务的IP地址及端口，在redis启动的时候他会自动跟master进行数据同步</span><br><span class="line">slaveof &lt;masterip&gt; &lt;masterport&gt;</span><br><span class="line"></span><br><span class="line"># 当master设置了密码保护时，slave服务连接master的密码</span><br><span class="line">masterauth &lt;master-password&gt;</span><br><span class="line"></span><br><span class="line"># 设置redis连接密码，如果配置了连接密码，客户端在连接redis是需要通过AUTH&lt;password&gt;命令提供密码，默认关闭</span><br><span class="line">requirepass footbared</span><br><span class="line"></span><br><span class="line"># 设置同一时间最大客户连接数，默认无限制。</span><br><span class="line"># redis可以同时连接的客户端数为redis程序可以打开的最大文件描述符，如果设置 maxclients 0，表示不作限制。</span><br><span class="line"># 当客户端连接数到达限制时，Redis会关闭新的连接并向客户端返回 max number of clients reached 错误信息</span><br><span class="line">maxclients 128</span><br><span class="line"></span><br><span class="line"># 指定redis最大内存限制，redis在启动时会把数据加载到内存中，达到最大内存后，redis会先尝试清除已到期或即将到期的Key。</span><br><span class="line"># 当此方法处理后，仍然到达最大内存设置，将无法再进行写入操作，但仍然可以进行读取操作。</span><br><span class="line"># 如果不设置maxmemory或者设置为0（默认为0），64位系统不限制内存，32位系统最多使用3GB内存。</span><br><span class="line">maxmemory &lt;bytes&gt;</span><br><span class="line"></span><br><span class="line"># 指定是否在每次更新操作后进行日志记录，Redis在默认情况下是异步的把数据写入磁盘</span><br><span class="line"># 如果不开启，可能会在断电时导致一段时间内的数据丢失。</span><br><span class="line"># 因为redis本身同步数据文件是按上面save条件来同步的，所以有的数据会在一段时间内只存在于内存中。默认为no。</span><br><span class="line">appendonly no</span><br><span class="line"></span><br><span class="line"># 指定日志文件名，默认为appendonly.aof</span><br><span class="line">appendfilename appendonly.aof</span><br><span class="line"></span><br><span class="line"># 指定更新日志的条件，有三个可选参数</span><br><span class="line"># no：表示等操作系统进行数据缓存同步到磁盘(快)</span><br><span class="line"># always：表示每次更新操作后手动调用fsync()将数据写到磁盘(慢，安全)</span><br><span class="line"># everysec：表示每秒同步一次(折衷，默认值)</span><br><span class="line">appendfsync everysec</span><br></pre></td></tr></table></figure>
+        <p>tee 用于读取标准输入以及写到标准输出的同时写到文件中</p>
+<h3 id="常用操作"><a href="#常用操作" class="headerlink" title="常用操作"></a>常用操作</h3><ul>
+<li>输出到文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo 123 | tee out.log</span><br><span class="line"></span><br><span class="line"># 检查文件内容是否和输出一致</span><br><span class="line">cat out.log</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<ul>
+<li><p>追加方式输出到文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 123 | tee -a out.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>同时输出到多个文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 123 | tee out.log out2.log</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>提高写入文件的权限等级<br>编辑文件后保存的时候才发现无操作权限，tee命令可以解决此问题，在文件保存时输入<code>:w !sudo tee %</code>，输入正确的密码，文件就可以保存了。</p>
+</li>
+</ul>
+<p>参考链接：<a href="https://man.linuxde.net/tee" target="_blank" rel="noopener">https://man.linuxde.net/tee</a></p>
 
       
     </div>
@@ -346,8 +362,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/02/opencv系列-介绍/" rel="next" title="opencv系列--介绍">
-                <i class="fa fa-chevron-left"></i> opencv系列--介绍
+              <a href="/2020/05/05/Kubernetes基础/" rel="next" title="Kubernetes 初识">
+                <i class="fa fa-chevron-left"></i> Kubernetes 初识
               </a>
             
           </div>
@@ -355,10 +371,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/23/Redis主从复制集群/" rel="prev" title="Redis 主从复制集群实践">
-                Redis 主从复制集群实践 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -410,8 +422,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -462,6 +483,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用操作"><span class="nav-number">1.</span> <span class="nav-text">常用操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
