@@ -79,17 +79,19 @@
 
 
 
-<meta name="description" content="参考链接：http://www.nginx.cn/666.html">
+<meta name="description" content="ImpalaA Modern, Open-Source SQL Engine for Hadoop. Guide &amp;gt;&amp;gt; Overview &amp;amp; Architecture Detail &amp;gt;&amp;gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php记录错误日志">
-<meta property="og:url" content="http://yoursite.com/2018/08/02/php记录错误日志/index.html">
+<meta property="og:title" content="Apache Impala">
+<meta property="og:url" content="http://yoursite.com/2020/06/21/Apache-Impala/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="参考链接：http://www.nginx.cn/666.html">
+<meta property="og:description" content="ImpalaA Modern, Open-Source SQL Engine for Hadoop. Guide &amp;gt;&amp;gt; Overview &amp;amp; Architecture Detail &amp;gt;&amp;gt;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-04-19T13:20:13.794Z">
+<meta property="og:image" content="https://wx2.sbimg.cn/2020/06/21/impala.png">
+<meta property="og:updated_time" content="2020-06-21T13:52:30.578Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php记录错误日志">
-<meta name="twitter:description" content="参考链接：http://www.nginx.cn/666.html">
+<meta name="twitter:title" content="Apache Impala">
+<meta name="twitter:description" content="ImpalaA Modern, Open-Source SQL Engine for Hadoop. Guide &amp;gt;&amp;gt; Overview &amp;amp; Architecture Detail &amp;gt;&amp;gt;">
+<meta name="twitter:image" content="https://wx2.sbimg.cn/2020/06/21/impala.png">
 
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/02/php记录错误日志/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/21/Apache-Impala/"/>
 
 
 
 
 
-  <title>php记录错误日志 | Think</title>
+  <title>Apache Impala | Think</title>
   
 
 
@@ -232,7 +234,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/02/php记录错误日志/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/21/Apache-Impala/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="nick">
@@ -249,7 +251,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">php记录错误日志</h1>
+          <h1 class="post-title" itemprop="name headline">Apache Impala</h1>
         
 
         <div class="post-meta">
@@ -261,8 +263,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-02T09:55:52+08:00">
-                2018-08-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-21T20:44:25+08:00">
+                2020-06-21
               </time>
             
 
@@ -284,8 +286,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/PHP/" itemprop="url" rel="index">
-                    <span itemprop="name">PHP</span>
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
                   </a>
                 </span>
 
@@ -321,7 +323,36 @@
       
 
       
-        <p>参考链接：<a href="http://www.nginx.cn/666.html" target="_blank" rel="noopener">http://www.nginx.cn/666.html</a></p>
+        <h1 id="Impala"><a href="#Impala" class="headerlink" title="Impala"></a>Impala</h1><p>A Modern, Open-Source SQL Engine for Hadoop. <a href="https://impala.apache.org/docs/build/html/index.html" target="_blank" rel="noopener">Guide &gt;&gt;</a></p>
+<h2 id="Overview-amp-Architecture"><a href="#Overview-amp-Architecture" class="headerlink" title="Overview &amp; Architecture"></a>Overview &amp; Architecture</h2><p><a href="https://sbimg.cn/image/24IF6" target="_blank" rel="noopener"><img src="https://wx2.sbimg.cn/2020/06/21/impala.png" alt="impala.png"></a></p>
+<p><a href="https://impala.apache.org/overview.html" target="_blank" rel="noopener">Detail &gt;&gt; </a></p>
+<a id="more"></a>
+<h2 id="Components-of-the-Impala-Server"><a href="#Components-of-the-Impala-Server" class="headerlink" title="Components of the Impala Server"></a>Components of the Impala Server</h2><ul>
+<li>Impala Daemon<br>负责接收客户端的SQL请求，在集群内分发查询任务，执行数据查询和写入，聚合查询结果返回给客户端。</li>
+<li>Statestore<br>负责检查每个 Impala Daemon 的健康状态</li>
+<li>Catalogd<br>同步每个 Impala Daemon 的 metadata 信息</li>
+</ul>
+<p><a href="https://impala.apache.org/docs/build/html/topics/impala_components.html" target="_blank" rel="noopener">Detail &gt;&gt;</a></p>
+<h2 id="Guidelines-for-designing-impala-schemas"><a href="#Guidelines-for-designing-impala-schemas" class="headerlink" title="Guidelines for designing impala schemas"></a>Guidelines for designing impala schemas</h2><h3 id="Prefer-binary-file-formats-over-text-based-formats-（parquet-avro）"><a href="#Prefer-binary-file-formats-over-text-based-formats-（parquet-avro）" class="headerlink" title="Prefer binary file formats over text-based formats. （parquet/avro）"></a>Prefer binary file formats over text-based formats. （parquet/avro）</h3><ul>
+<li><p>For an efficient and scalable format for large, performance-critical tables, use the Parquet file format.</p>
+</li>
+<li><p>To deliver intermediate data during the ETL process, in a format that can also be used by other Hadoop components, Avro is a reasonable choice.</p>
+</li>
+<li><p>For convenient import of raw data, use a text table instead of RCFile or SequenceFile, and convert to Parquet in a later stage of the ETL process.</p>
+</li>
+</ul>
+<h3 id="Use-Snappy-compression-where-practical"><a href="#Use-Snappy-compression-where-practical" class="headerlink" title="Use Snappy compression where practical."></a>Use Snappy compression where practical.</h3><h3 id="Prefer-numeric-types-over-strings"><a href="#Prefer-numeric-types-over-strings" class="headerlink" title="Prefer numeric types over strings."></a>Prefer numeric types over strings.</h3><h3 id="Partition-but-do-not-over-partition"><a href="#Partition-but-do-not-over-partition" class="headerlink" title="Partition, but do not over-partition."></a>Partition, but do not over-partition.</h3><h3 id="Always-compute-stats-after-loading-data"><a href="#Always-compute-stats-after-loading-data" class="headerlink" title="Always compute stats after loading data."></a>Always compute stats after loading data.</h3><ul>
+<li>COMPUTE STATS</li>
+<li>SHOW STATS</li>
+</ul>
+<h3 id="Verify-sensible-execution-plans-with-EXPLAIN-and-SUMMARY"><a href="#Verify-sensible-execution-plans-with-EXPLAIN-and-SUMMARY" class="headerlink" title="Verify sensible execution plans with EXPLAIN and SUMMARY."></a>Verify sensible execution plans with EXPLAIN and SUMMARY.</h3><h2 id="Tuning-Impala-for-Performance"><a href="#Tuning-Impala-for-Performance" class="headerlink" title="Tuning Impala for Performance."></a>Tuning Impala for Performance.</h2><p><a href="https://impala.apache.org/docs/build/html/topics/impala_schema_design.html" target="_blank" rel="noopener">Detail &gt;&gt;</a></p>
+<h2 id="Resource-Management"><a href="#Resource-Management" class="headerlink" title="Resource Management"></a>Resource Management</h2><p><a href="https://impala.apache.org/docs/build/html/topics/impala_admission.html" target="_blank" rel="noopener">Detail</a> and <a href="https://impala.apache.org/docs/build/html/topics/impala_admission_config.html" target="_blank" rel="noopener">Configuration</a></p>
+<h2 id="Impala-Security"><a href="#Impala-Security" class="headerlink" title="Impala Security"></a>Impala Security</h2><ul>
+<li><a href="https://impala.apache.org/docs/build/html/topics/impala_authorization.html#authorization" target="_blank" rel="noopener">authorization</a></li>
+<li><a href="https://impala.apache.org/docs/build/html/topics/impala_kerberos.html#kerberos" target="_blank" rel="noopener">authentication</a></li>
+<li><a href="https://impala.apache.org/docs/build/html/topics/impala_auditing.html#auditing" target="_blank" rel="noopener">auditing</a></li>
+</ul>
+<p><a href="https://impala.apache.org/docs/build/html/topics/impala_security.html" target="_blank" rel="noopener">Detail &gt;&gt;</a></p>
 
       
     </div>
@@ -346,8 +377,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/02/FFmpeg库常用操作/" rel="next" title="FFmpeg库常用操作">
-                <i class="fa fa-chevron-left"></i> FFmpeg库常用操作
+              <a href="/2020/05/17/tee/" rel="next" title="Linux命令 - tee">
+                <i class="fa fa-chevron-left"></i> Linux命令 - tee
               </a>
             
           </div>
@@ -356,8 +387,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/02/opencv系列-环境搭建/" rel="prev" title="opencv系列--环境搭建">
-                opencv系列--环境搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/2020/06/21/Apache-Ranger/" rel="prev" title="Apache Ranger">
+                Apache Ranger <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -410,8 +441,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -462,6 +502,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Impala"><span class="nav-number">1.</span> <span class="nav-text">Impala</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview-amp-Architecture"><span class="nav-number">1.1.</span> <span class="nav-text">Overview &amp; Architecture</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Components-of-the-Impala-Server"><span class="nav-number">1.2.</span> <span class="nav-text">Components of the Impala Server</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Guidelines-for-designing-impala-schemas"><span class="nav-number">1.3.</span> <span class="nav-text">Guidelines for designing impala schemas</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Prefer-binary-file-formats-over-text-based-formats-（parquet-avro）"><span class="nav-number">1.3.1.</span> <span class="nav-text">Prefer binary file formats over text-based formats. （parquet/avro）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Use-Snappy-compression-where-practical"><span class="nav-number">1.3.2.</span> <span class="nav-text">Use Snappy compression where practical.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prefer-numeric-types-over-strings"><span class="nav-number">1.3.3.</span> <span class="nav-text">Prefer numeric types over strings.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Partition-but-do-not-over-partition"><span class="nav-number">1.3.4.</span> <span class="nav-text">Partition, but do not over-partition.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Always-compute-stats-after-loading-data"><span class="nav-number">1.3.5.</span> <span class="nav-text">Always compute stats after loading data.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Verify-sensible-execution-plans-with-EXPLAIN-and-SUMMARY"><span class="nav-number">1.3.6.</span> <span class="nav-text">Verify sensible execution plans with EXPLAIN and SUMMARY.</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tuning-Impala-for-Performance"><span class="nav-number">1.4.</span> <span class="nav-text">Tuning Impala for Performance.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Resource-Management"><span class="nav-number">1.5.</span> <span class="nav-text">Resource Management</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Impala-Security"><span class="nav-number">1.6.</span> <span class="nav-text">Impala Security</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
