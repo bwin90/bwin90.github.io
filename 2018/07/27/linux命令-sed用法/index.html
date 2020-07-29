@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。参考链接：https://coolshell.cn/articles/9104.htmlsed手册：http://www.gnu.org/software/sed/manual/sed.html">
+<meta name="description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。 知识点行合并合并指定行（eg：合并第二行和第三行）12345// 结果输出到屏幕sed &amp;apos;2&amp;#123;N;s/\n//;&amp;#125;&amp;apos; file// 直接修改文件sed -i &amp;apos;2&amp;#123;N;s/\n//;&amp;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux sed 用法">
 <meta property="og:url" content="http://yoursite.com/2018/07/27/linux命令-sed用法/index.html">
 <meta property="og:site_name" content="Think">
-<meta property="og:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。参考链接：https://coolshell.cn/articles/9104.htmlsed手册：http://www.gnu.org/software/sed/manual/sed.html">
+<meta property="og:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。 知识点行合并合并指定行（eg：合并第二行和第三行）12345// 结果输出到屏幕sed &amp;apos;2&amp;#123;N;s/\n//;&amp;#125;&amp;apos; file// 直接修改文件sed -i &amp;apos;2&amp;#123;N;s/\n//;&amp;">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T01:53:28.309Z">
+<meta property="og:updated_time" content="2020-07-29T15:46:01.603Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux sed 用法">
-<meta name="twitter:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。参考链接：https://coolshell.cn/articles/9104.htmlsed手册：http://www.gnu.org/software/sed/manual/sed.html">
+<meta name="twitter:description" content="sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。 知识点行合并合并指定行（eg：合并第二行和第三行）12345// 结果输出到屏幕sed &amp;apos;2&amp;#123;N;s/\n//;&amp;#125;&amp;apos; file// 直接修改文件sed -i &amp;apos;2&amp;#123;N;s/\n//;&amp;">
 
 
 
@@ -321,7 +321,9 @@
       
 
       
-        <p>sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。<br>参考链接：<a href="https://coolshell.cn/articles/9104.html" target="_blank" rel="noopener">https://coolshell.cn/articles/9104.html</a><br>sed手册：<a href="http://www.gnu.org/software/sed/manual/sed.html" target="_blank" rel="noopener">http://www.gnu.org/software/sed/manual/sed.html</a></p>
+        <p>sed全名叫stream editor，流编辑器，用程序的方式来编辑文本。本质上是正则模式匹配，所以可以玩转sed的人，一般来说，正则表达式能力都比较强。</p>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><h4 id="行合并"><a href="#行合并" class="headerlink" title="行合并"></a>行合并</h4><h4 id="合并指定行（eg：合并第二行和第三行）"><a href="#合并指定行（eg：合并第二行和第三行）" class="headerlink" title="合并指定行（eg：合并第二行和第三行）"></a>合并指定行（eg：合并第二行和第三行）</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 结果输出到屏幕</span><br><span class="line">sed &apos;2&#123;N;s/\n//;&#125;&apos; file</span><br><span class="line"></span><br><span class="line">// 直接修改文件</span><br><span class="line">sed -i &apos;2&#123;N;s/\n//;&#125;&apos; file</span><br></pre></td></tr></table></figure>
+<p>参考链接：<a href="https://coolshell.cn/articles/9104.html" target="_blank" rel="noopener">https://coolshell.cn/articles/9104.html</a><br>sed手册：<a href="http://www.gnu.org/software/sed/manual/sed.html" target="_blank" rel="noopener">http://www.gnu.org/software/sed/manual/sed.html</a></p>
 
       
     </div>
@@ -410,8 +412,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -462,6 +473,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点"><span class="nav-number">1.</span> <span class="nav-text">知识点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#行合并"><span class="nav-number">1.1.</span> <span class="nav-text">行合并</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合并指定行（eg：合并第二行和第三行）"><span class="nav-number">1.2.</span> <span class="nav-text">合并指定行（eg：合并第二行和第三行）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
