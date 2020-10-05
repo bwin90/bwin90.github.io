@@ -229,6 +229,169 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/10/04/CDH-6-2-1-离线部署/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="nick">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Think">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/10/04/CDH-6-2-1-离线部署/" itemprop="url">CDH 6.2.1 离线部署</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-10-04T15:15:10+08:00">
+                2020-10-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/大数据/" itemprop="url" rel="index">
+                    <span itemprop="name">大数据</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>由于网络问题，所有需要的软件包已下载并上传到自有对象存储服务</p>
+<h2 id="节点初始化"><a href="#节点初始化" class="headerlink" title="节点初始化"></a>节点初始化</h2><h3 id="hostname"><a href="#hostname" class="headerlink" title="hostname"></a>hostname</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname &#123;hostname&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="hosts"><a href="#hosts" class="headerlink" title="hosts"></a>hosts</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line">&#123;ip&#125; &#123;hostname&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="禁用防火墙"><a href="#禁用防火墙" class="headerlink" title="禁用防火墙"></a>禁用防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
+<h3 id="禁用大页面压缩"><a href="#禁用大页面压缩" class="headerlink" title="禁用大页面压缩"></a>禁用大页面压缩</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag</span><br><span class="line"></span><br><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line"></span><br><span class="line">echo &quot;echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag&quot; &gt;&gt; /etc/rc.local</span><br><span class="line">echo &quot;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&quot; &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure>
+<h3 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 查看</span><br><span class="line">getenforce</span><br><span class="line"></span><br><span class="line"># 如果返回结果是 enforcing 执行如下命令，否则跳过</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=permissive</span><br><span class="line"></span><br><span class="line"># 重启服务器或执行如下命令生效</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+<h3 id="NTP"><a href="#NTP" class="headerlink" title="NTP"></a>NTP</h3><p>使用的腾讯云主机，自带该服务</p>
+<h2 id="JDK-配置"><a href="#JDK-配置" class="headerlink" title="JDK 配置"></a>JDK 配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/packages</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/jdk-8u261-linux-x64.tar.gz -P /data/packages</span><br><span class="line">mkdir /usr/java</span><br><span class="line">tar zxvf /data/packages/jdk-8u261-linux-x64.tar.gz -C /usr/java</span><br><span class="line">echo &quot;export JAVA_HOME=/usr/java/jdk1.8.0_261&quot; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br><span class="line">echo &quot;export PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;PATH&#125;&quot; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
+<h2 id="MySQL-master"><a href="#MySQL-master" class="headerlink" title="MySQL (master)"></a>MySQL (master)</h2><p><a href="https://docs.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_mysql.html#cmig_topic_5_5" target="_blank" rel="noopener">参考文档</a></p>
+<blockquote>
+<p>为了保证稳定性和高可用性，建议单独部署<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"># 卸载默认</span><br><span class="line">rpm -qa | grep -i mariadb</span><br><span class="line">rpm -e --nodeps &#123;&#125;</span><br><span class="line"></span><br><span class="line">cd /data/packages</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/mysql-5.7.31-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line">tar xvf mysql-5.7.31-1.el7.x86_64.rpm-bundle.tar</span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">rpm -ivh /data/packages/mysql-community-common-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh /data/packages/mysql-community-libs-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh /data/packages/mysql-community-client-5.7.31-1.el7.x86_64.rpm</span><br><span class="line">rpm -ivh /data/packages/mysql-community-server-5.7.31-1.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line"># 查看</span><br><span class="line">systemctl status mysqld</span><br><span class="line"></span><br><span class="line"># 启动</span><br><span class="line">systemctl start mysqld</span><br><span class="line"></span><br><span class="line"># 停止</span><br><span class="line">systemctl stop mysqld</span><br><span class="line"></span><br><span class="line"># 开机启动（可选）</span><br><span class="line">systemctl enable mysqld</span><br><span class="line"></span><br><span class="line"># 修改密码</span><br><span class="line">ALTER USER &apos;root&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;SpV6)cu~zu6kglb2SJTL&apos;;</span><br><span class="line"></span><br><span class="line"># 配置文件</span><br><span class="line">/etc/my.cnf</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"># Cloudera Manager Server</span><br><span class="line">mysql&gt; CREATE DATABASE scm DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span><br><span class="line">mysql&gt; GRANT ALL ON scm.* TO &apos;scm&apos;@&apos;%&apos; IDENTIFIED BY &apos;&lt;password&gt;&apos;;</span><br><span class="line"></span><br><span class="line"># Hive Metastore Server</span><br><span class="line">mysql&gt; CREATE DATABASE metastore DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span><br><span class="line">mysql&gt; GRANT ALL ON metastore.* TO &apos;hive&apos;@&apos;%&apos; IDENTIFIED BY &apos;&lt;password&gt;&apos;;</span><br><span class="line"></span><br><span class="line"># Sentry Server</span><br><span class="line">mysql&gt; CREATE DATABASE sentry DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;</span><br><span class="line">mysql&gt; GRANT ALL ON sentry.* TO &apos;sentry&apos;@&apos;%&apos; IDENTIFIED BY &apos;&lt;password&gt;&apos;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 查看权限</span><br><span class="line">mysql&gt; SHOW GRANTS FOR &apos;&lt;user&gt;&apos;@&apos;%&apos;;</span><br></pre></td></tr></table></figure>
+<h2 id="MySQL-JDBC-Driver"><a href="#MySQL-JDBC-Driver" class="headerlink" title="MySQL JDBC Driver"></a>MySQL JDBC Driver</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd /data/packages</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/mysql-connector-java-5.1.49.tar.gz</span><br><span class="line"></span><br><span class="line">tar zxvf mysql-connector-java-5.1.49.tar.gz</span><br><span class="line"></span><br><span class="line">mkdir -p /usr/share/java/</span><br><span class="line">cp /data/packages/mysql-connector-java-5.1.49/mysql-connector-java-5.1.49-bin.jar /usr/share/java/mysql-connector-java.jar</span><br></pre></td></tr></table></figure>
+<h2 id="CM"><a href="#CM" class="headerlink" title="CM"></a>CM</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">mkdir /opt/cloudera-manager</span><br><span class="line">cd /opt/cloudera-manager</span><br><span class="line"></span><br><span class="line"># agent</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/cloudera-manager-agent-6.2.1-1426065.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line"># daemons</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/cloudera-manager-daemons-6.2.1-1426065.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line"># server</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/cloudera-manager-server-6.2.1-1426065.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/cloudera-manager-server-db-2-6.2.1-1426065.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line"># 安装 daemon &amp; agent</span><br><span class="line">rpm -ivh cloudera-manager-daemons-6.2.1-1426065.el7.x86_64.rpm</span><br><span class="line">rpm -ivh cloudera-manager-agent-6.2.1-1426065.el7.x86_64.rpm --nodeps</span><br><span class="line"></span><br><span class="line"># 修改 agent 节点配置</span><br><span class="line">vim /etc/cloudera-scm-agent/config.ini</span><br><span class="line">将 server_host 的值修改为 Master 的 Host</span><br><span class="line"></span><br><span class="line"># agent 启动/查看/停止</span><br><span class="line">systemctl start cloudera-scm-agent</span><br><span class="line">systemctl status cloudera-scm-agent</span><br><span class="line">systemctl stop cloudera-scm-agent</span><br><span class="line"></span><br><span class="line"># 安装 server(master)</span><br><span class="line">rpm -ivh cloudera-manager-server-6.2.1-1426065.el7.x86_64.rpm</span><br><span class="line"></span><br><span class="line"># CM Server Database 配置(master)</span><br><span class="line">/opt/cloudera/cm/schema/scm_prepare_database.sh [-h &lt;host&gt;] &lt;databaseType&gt; &lt;databaseName&gt; &lt;databaseUser&gt;</span><br><span class="line"></span><br><span class="line">## 修改 db.properties</span><br><span class="line">vim /etc/cloudera-scm-server/db.properties</span><br><span class="line"></span><br><span class="line">com.cloudera.cmf.db.type=&lt;mysql&gt;</span><br><span class="line">com.cloudera.cmf.db.host=&lt;localhost&gt;</span><br><span class="line">com.cloudera.cmf.db.name=&lt;scm&gt;</span><br><span class="line">com.cloudera.cmf.db.user=&lt;scm&gt;</span><br><span class="line">com.cloudera.cmf.db.setupType=EXTERNAL</span><br><span class="line">com.cloudera.cmf.db.password=&lt;password&gt;</span><br><span class="line"></span><br><span class="line"># server 启动/查看/停止</span><br><span class="line">systemctl start cloudera-scm-server</span><br><span class="line">systemctl status cloudera-scm-server</span><br><span class="line">systemctl stop cloudera-scm-server</span><br></pre></td></tr></table></figure>
+<h2 id="CDH"><a href="#CDH" class="headerlink" title="CDH"></a>CDH</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">cd /opt/cloudera/parcel-repo</span><br><span class="line"></span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/CDH-6.2.1-1.cdh6.2.1.p0.4951328-el7.parcel</span><br><span class="line"></span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/CDH-6.2.1-1.cdh6.2.1.p0.4951328-el7.parcel.sha1</span><br><span class="line"></span><br><span class="line"># 重命名</span><br><span class="line">mv CDH-6.2.1-1.cdh6.2.1.p0.4951328-el7.parcel.sha1 CDH-6.2.1-1.cdh6.2.1.p0.4951328-el7.parcel.sha</span><br><span class="line"></span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/manifest.json</span><br></pre></td></tr></table></figure>
+<h2 id="CM-Web"><a href="#CM-Web" class="headerlink" title="CM Web"></a>CM Web</h2><blockquote>
+<p>成功启动 CM Server后，登录Web UI，http://{ip}:7180，账号密码默认 admin/admin</p>
+</blockquote>
+<h3 id="Recommended-Cluster-Hosts-and-Role-Distribution"><a href="#Recommended-Cluster-Hosts-and-Role-Distribution" class="headerlink" title="Recommended Cluster Hosts and Role Distribution"></a>Recommended Cluster Hosts and Role Distribution</h3><p><a href="https://docs.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_host_allocations.html#host_role_assignments" target="_blank" rel="noopener">https://docs.cloudera.com/documentation/enterprise/6/latest/topics/cm_ig_host_allocations.html#host_role_assignments</a></p>
+<h2 id="虚拟内存设置（视具体情况而定）"><a href="#虚拟内存设置（视具体情况而定）" class="headerlink" title="虚拟内存设置（视具体情况而定）"></a>虚拟内存设置（视具体情况而定）</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sysctl vm.swappiness=10</span><br><span class="line">echo &apos;vm.swappiness=10&apos; &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<h2 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h2><p>CM：<a href="https://archive.cloudera.com/cm6/6.2.1/redhat7/yum/RPMS/x86_64/" target="_blank" rel="noopener">https://archive.cloudera.com/cm6/6.2.1/redhat7/yum/RPMS/x86_64/</a><br>CDH：<a href="https://archive.cloudera.com/cdh6/6.2.1/parcels/" target="_blank" rel="noopener">https://archive.cloudera.com/cdh6/6.2.1/parcels/</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/08/flume/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1531,153 +1694,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/19/pure-ftpd日志/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="nick">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Think">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/04/19/pure-ftpd日志/" itemprop="url">pure-ftpd日志</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-19T20:35:59+08:00">
-                2020-04-19
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h3><p>CentOS系统使用LNMP一键安装包安装Pureftpd服务</p>
-<h3 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h3>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/04/19/pure-ftpd日志/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1728,7 +1744,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
