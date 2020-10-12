@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Think">
 <meta property="og:description" content="准备 由于网络问题，所有需要的软件包已下载并上传到自有对象存储服务 以下步骤如无特别说明，为所有主机执行  节点初始化hostname1hostnamectl set-hostname &amp;#123;hostname&amp;#125; hosts12vim /etc/hosts&amp;#123;ip&amp;#125; &amp;#123;hostname&amp;#125; 禁用防火墙12systemctl disable fire">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-10-11T15:08:31.528Z">
+<meta property="og:updated_time" content="2020-10-12T15:37:06.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS7 CDH 6.2.1 离线部署">
 <meta name="twitter:description" content="准备 由于网络问题，所有需要的软件包已下载并上传到自有对象存储服务 以下步骤如无特别说明，为所有主机执行  节点初始化hostname1hostnamectl set-hostname &amp;#123;hostname&amp;#125; hosts12vim /etc/hosts&amp;#123;ip&amp;#125; &amp;#123;hostname&amp;#125; 禁用防火墙12systemctl disable fire">
@@ -329,6 +329,7 @@
 <h3 id="hosts"><a href="#hosts" class="headerlink" title="hosts"></a>hosts</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/hosts</span><br><span class="line">&#123;ip&#125; &#123;hostname&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="禁用防火墙"><a href="#禁用防火墙" class="headerlink" title="禁用防火墙"></a>禁用防火墙</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld</span><br><span class="line">systemctl stop firewalld</span><br></pre></td></tr></table></figure>
 <h3 id="禁用大页面压缩"><a href="#禁用大页面压缩" class="headerlink" title="禁用大页面压缩"></a>禁用大页面压缩</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag</span><br><span class="line"></span><br><span class="line">echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled</span><br><span class="line"></span><br><span class="line">echo &quot;echo never &gt; /sys/kernel/mm/transparent_hugepage/defrag&quot; &gt;&gt; /etc/rc.local</span><br><span class="line">echo &quot;echo never &gt; /sys/kernel/mm/transparent_hugepage/enabled&quot; &gt;&gt; /etc/rc.local</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h3 id="SELinux"><a href="#SELinux" class="headerlink" title="SELinux"></a>SELinux</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># 查看</span><br><span class="line">getenforce</span><br><span class="line"></span><br><span class="line"># 如果返回结果是 enforcing 执行如下命令，否则跳过</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=permissive</span><br><span class="line"></span><br><span class="line"># 重启服务器或执行如下命令生效</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
 <h3 id="NTP"><a href="#NTP" class="headerlink" title="NTP"></a>NTP</h3><p>基于腾讯云主机，已安装该服务。自行安装可参考<a href="https://docs.cloudera.com/documentation/enterprise/6/latest/topics/install_cdh_enable_ntp.html" target="_blank" rel="noopener">文档</a></p>
 <h2 id="JDK-配置"><a href="#JDK-配置" class="headerlink" title="JDK 配置"></a>JDK 配置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mkdir /data/packages</span><br><span class="line">wget https://packages-1251506165.cos.ap-shanghai.myqcloud.com/jdk-8u261-linux-x64.tar.gz -P /data/packages</span><br><span class="line">mkdir /usr/java</span><br><span class="line">tar zxvf /data/packages/jdk-8u261-linux-x64.tar.gz -C /usr/java</span><br><span class="line">echo &quot;export JAVA_HOME=/usr/java/jdk1.8.0_261&quot; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br><span class="line">echo &quot;export PATH=$&#123;JAVA_HOME&#125;/bin:$&#123;PATH&#125;&quot; &gt;&gt; /etc/profile</span><br><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure>
@@ -382,6 +383,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/10/12/Azkaban-3-81-0-安装部署/" rel="prev" title="Azkaban 3.81.0 安装部署">
+                Azkaban 3.81.0 安装部署 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -458,7 +463,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
